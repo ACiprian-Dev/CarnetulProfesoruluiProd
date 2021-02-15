@@ -1,11 +1,15 @@
 <template>
-  <main>
+    <main>
         <div class="overlay">
         <h1>Parerea ta conteaza . Tu faci diferenta !</h1>
         <p>Carnetul profesorului va vizeaza punctul vostru de vedere incercand sa faca o diferenta si sa va imbunatateasca viata scolara .</p>
         </div>
     </main>
-
+    <section>
+        <h2>Cu ce scop exista acest proiect?</h2>
+        <p>Scopul nostru este de a va face auziti , evidentiind problemele cu care fiecare elev se confrunta , dar in acelasi timp de a aduce in atentia profesorilor dificultatile de intelegere ale unui elev.</p>
+        <img src="../assets/SectionPhoto@2x.png" alt="">
+    </section>
 </template>
 
 <script>
@@ -13,7 +17,7 @@
 
 
 export default {
-  name: 'Home'
+  name: 'HomeView'
 };
 </script>
 

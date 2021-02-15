@@ -1,5 +1,6 @@
 <template>
-      <header>
+      <header :style="{ position: $route.path === '/Login' ? 'relative' : 'fixed',
+                        background: $route.path === '/Login' ? '#242222' : ''} ">
         
         <div id="Logo">
             <img src="./assets/logo.png" alt="">  
@@ -24,6 +25,10 @@
   <router-view/>
 </template>
 
+<script>
+    
+</script>
+
 <style lang="scss">
 * {
     margin: 0;
@@ -40,7 +45,7 @@ router-link, a {
 }
 
 header {
-    position: fixed;
+    //position: fixed;
     height: 15vh;
     display: flex;
     align-items: center;

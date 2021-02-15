@@ -16,15 +16,11 @@
 
 <script>
 export default {
-    name: 'Login'
+    name: 'LoginView'
 };
 </script>
 
 <style lang="scss" scoped>
-
-header {
-    position: initial;
-}
 
 #LogIn {
     margin: 12em 0 0 24em;
