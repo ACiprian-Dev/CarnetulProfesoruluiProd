@@ -39,7 +39,7 @@
 router-link, a {
     text-decoration: none;
     color: #000000;
-    opacity: 90%;
+    opacity: .9;
     font-size: 16px;
     color: #fff;
 }
