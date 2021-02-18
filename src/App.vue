@@ -8,9 +8,9 @@
         </div>
         <nav>
             <ul>
-                <li><a href="">Profesori</a></li>
-                <li><a href="">Despre</a></li>
-                <li><a href="">Contact</a></li>
+                <li><router-link to="/ProfesoriView">Profesori</router-link></li>
+                <!-- <li><a href="">Despre</a></li>
+                <li><a href="">Contact</a></li> -->
             </ul>
         </nav>
        
@@ -73,7 +73,7 @@ nav li {
 }
 
 #Logo {
-    margin-left: 8em;
+    margin-left: 140px;
     display: flex;
     align-items: center;
 }

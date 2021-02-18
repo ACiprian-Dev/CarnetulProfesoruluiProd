@@ -2,28 +2,57 @@
   <section id="LogIn">
         <h1>Sign In</h1>
 
-        <form action="" method="POST">
-            <label for="ID">ID:</label> <br>
-            <input type="text" name="ID" id="ID" placeholder="ID-ul dumneavostra..."> <br>
-            <label for="ID">Parola:</label> <br>
-            <input type="password" name="password" id="password" required placeholder="Parola dumneavostra..."> <br>
-            <input type="checkbox" name="StaySigned" id="StaySigned"> 
-            <label for="StaySigned">Keep Me Signed In</label> <br>
-            <input type="submit" value="Sign In">
+        <form @submit.prevent>
+            <div>
+                <label for="ID">ID:</label> <br>
+                <input v-model.trim ="loginForm.email" type="text" name="ID" id="ID" required placeholder="ID-ul dumneavostra...">
+            </div>
+            <div>
+                <label for="ID">Parola:</label> <br>
+                <input v-model.trim="loginForm.password" type="password" name="password" id="password" required placeholder="Parola dumneavostra...">
+            </div>
+            <div id="CheckRemember">
+                <input type="checkbox" name="StaySigned" id="StaySigned"> 
+                <label for="StaySigned">Keep Me Signed In</label>
+            </div>
+            <button @click="login()" class="button">Log In</button>
         </form>
     </section>
 </template>
 
 <script>
 export default {
-    name: 'LoginView'
+    name: 'LoginView',
+    data() {
+        return {
+            loginForm: {
+                email: '',
+                password: ''
+            }
+        }
+    },
+    methods: {
+        login() {
+            this.$store.dispatch('login',{
+                email: this.loginForm.email,
+                password: this.loginForm.password
+            })
+        }
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 
 #LogIn {
-    margin: 12em 0 0 24em;
+    background: #42b983;
+    max-width: 20vw;
+    height: 35vh;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #3E3E3E;
 }
 
 #LogIn h1 {
@@ -40,16 +69,23 @@ export default {
 
 #LogIn input {
     margin-bottom: 1em;
-
+    width: 250px;
+    height: 24px;
 }
 
-input[type=submit] {
-    background-color: #00B695;
+#CheckRemember input{
+    height: 15px;
+    width: 15px;
+}
+
+.button {
+    background-color: #9500B6;
     border: none;
     color: white;
     padding: 12px 32px;
     text-decoration: none;
     cursor: pointer;
+    border-radius: 5%;
   }
 
 </style>

@@ -2,12 +2,15 @@
     <main>
         <div class="overlay">
         <h1>Parerea ta conteaza . Tu faci diferenta !</h1>
-        <p>Carnetul profesorului va vizeaza punctul vostru de vedere incercand sa faca o diferenta si sa va imbunatateasca viata scolara .</p>
+        <p>Carnetul profesorului va vizeaza punctul vostru de vedere incercand sa faca o diferenta si sa va imbunatateasca viata scolara .</p>  
+        <li><a @click="logout()">logout</a></li>
         </div>
     </main>
     <section>
-        <h2>Cu ce scop exista acest proiect?</h2>
-        <p>Scopul nostru este de a va face auziti , evidentiind problemele cu care fiecare elev se confrunta , dar in acelasi timp de a aduce in atentia profesorilor dificultatile de intelegere ale unui elev.</p>
+        <div>
+            <h2>Cu ce scop exista acest proiect?</h2>
+            <p>Scopul nostru este de a va face auziti , evidentiind problemele cu care fiecare elev se confrunta , dar in acelasi timp de a aduce in atentia profesorilor dificultatile de intelegere ale unui elev.</p>
+        </div>
         <img src="../assets/SectionPhoto@2x.png" alt="">
     </section>
 </template>
@@ -16,15 +19,22 @@
 // @ is an alias to /src
 
 
+
 export default {
-  name: 'HomeView'
+  name: 'HomeView',
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+    }
+  }
+
 };
 </script>
 
 <style lang="scss" scoped>
 main {
     background: url("../assets/Hero_Image.jpg") no-repeat center /cover;
-    height: 100vh;
+    height: 85vh;
     position: relative;
     color: #fff;
     z-index: 1;
@@ -56,4 +66,29 @@ main {
     font-weight: 600;
     margin-top: 28px;
 }
+
+section {
+    background: #00B695;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75vh;
+    padding: 0 140px;
+    color: #fff;
+    h2 {
+        font-size: 48px;
+    }
+    p {
+        font-size: 16px;
+    }
+}
+
+section img {
+    max-height: 50vh;
+}
+
+section div {
+    max-width: 30vw;
+}
+
 </style>
