@@ -1,6 +1,6 @@
 <template>
-      <header :style="{ position: $route.path === '/Login' ? 'relative' : 'fixed',
-                        background: $route.path === '/Login' ? '#242222' : ''} ">
+      <header :style="{ position: $route.path !== '/' ? 'relative' : 'fixed',
+                        background: $route.path !== '/' ? '#242222' : ''} ">
         
         <div id="Logo">
             <img src="./assets/logo.png" alt="">  
