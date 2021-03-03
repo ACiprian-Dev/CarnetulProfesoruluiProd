@@ -4,6 +4,10 @@ import router from './router'
 import store from './store'
 import {auth} from './firebase'
 
+let app = createApp(App).use(store).use(router).mount('#app');
+
 auth.onAuthStateChanged(() => {
-    createApp(App).use(store).use(router).mount('#app')
+    if(!app) {
+        app = createApp(App).use(store).use(router).mount('#app');
+    }
 })
