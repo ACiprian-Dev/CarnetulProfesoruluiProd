@@ -2,16 +2,11 @@ import Vuex from 'vuex'
 import * as fb from "../firebase"
 import router from "../router/index"
 
-fb.profesoriCollection.where("clase", "array-contains", "11A").onSnapshot((querySnapshot) => {
-          let profi = []
-          querySnapshot.forEach((doc) => {
-            let prof = doc.data()
-            prof.id = doc.id
+// let clasa = fb.eleviCollection.doc(fb.auth.currentUser.uid)
 
-            profi.push(prof)
-          })
-          store.commit('setProfesori', profi)
-      })
+// console.log(clasa);
+
+
 
 const store = new Vuex.Store({
   state: {
@@ -36,7 +31,8 @@ const store = new Vuex.Store({
       const userProfile = await fb.eleviCollection.doc(user.uid).get()
 
       commit('setUserProfile', userProfile.data())
-      
+      this.dispatch('fetchProfesori', userProfile.data())
+
       router.push('/')
 
     },
@@ -47,6 +43,20 @@ const store = new Vuex.Store({
       commit('setUserProfile', {})
       router.push('/LogIn')
     },
+    async fetchProfesori({commit}, uProfile) {
+      await fb.profesoriCollection.where("clase", "array-contains", uProfile.clasa)
+      .get()
+      .then((querySnapshot) => {
+                  let profi = []
+                  querySnapshot.forEach((doc) => {
+                    let prof = doc.data()
+                    prof.id = doc.id
+        
+                    profi.push(prof)
+                  })
+                  commit('setProfesori', profi)
+              })
+    }
     // async fetchProfesori({commit}) {
     //   //const profi = await fb.profesoriCollection.where("clase", "array-contains", "11A").get();
       
@@ -56,5 +66,16 @@ const store = new Vuex.Store({
   modules: {
   }
 })
+
+// fb.profesoriCollection.where("clase", "array-contains", $store.state.userProfile.clasa).onSnapshot((querySnapshot) => {
+//           let profi = []
+//           querySnapshot.forEach((doc) => {
+//             let prof = doc.data()
+//             prof.id = doc.id
+
+//             profi.push(prof)
+//           })
+//           store.commit('setProfesori', profi)
+//       })
 
 export default store;
