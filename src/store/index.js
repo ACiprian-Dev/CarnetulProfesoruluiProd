@@ -28,10 +28,31 @@ const store = new Vuex.Store({
       dispatch('fetchUserProfile', user)
     },
     async fetchUserProfile({commit}, user) {
-      const userProfile = await fb.eleviCollection.doc(user.uid).get()
+      const userProfile = await fb.usersCollection.doc(user.uid).get()
 
       commit('setUserProfile', userProfile.data())
-      this.dispatch('fetchProfesori', userProfile.data())
+      const userid = userProfile.data().userID
+      
+      
+
+      // const elevProfile = await fb.eleviCollection.doc(userid).get()
+      if(userProfile.data().userType=="elev") {
+        console.log(userid + "dsadsas")
+        
+        // await fb.eleviCollection.where("userID", "==", userid)
+        // .get()
+        // .then((querySnapshot) => {
+        // querySnapshot.forEach((doc) => {
+        //   this.dispatch('fetchProfesori', doc.data())
+        //   console.log(doc.data())
+        // });
+        // })
+
+      const elev = await fb.eleviCollection.where("userID", "==", userid).get()
+      elev.forEach(doc => {
+        this.dispatch('fetchProfesori', doc.data())
+      })
+      }
 
       router.push('/')
 
@@ -43,8 +64,8 @@ const store = new Vuex.Store({
       commit('setUserProfile', {})
       router.push('/LogIn')
     },
-    async fetchProfesori({commit}, uProfile) {
-      await fb.profesoriCollection.where("clase", "array-contains", uProfile.clasa)
+    async fetchProfesori({commit}, elev) {
+      await fb.profesoriCollection.where("clase", "array-contains", elev.clasa)
       .get()
       .then((querySnapshot) => {
                   let profi = []

@@ -6,6 +6,7 @@
             <img src="./assets/logo.png" alt="">  
             <router-link to="/"><h2>Carnetul Profesorului</h2></router-link>
         </div>
+        <template v-if="isElev">
         <nav>
             <ul>
                 <li><router-link to="/ProfesoriView">Profesori</router-link></li>
@@ -18,15 +19,58 @@
                 <input type="text" placeholder="Search..">
                 <img src="./assets/Search_Icon.svg" alt="">
             </div>
+            <!-- <router-link to="/Login" id="LogIn_link">LogIn</router-link> -->
+        </template>
+        <template v-else>
+            <nav>
+            <ul>
+                <li><router-link to="/ProfesoriView">Profesori</router-link></li>
+                <!-- <li><a href="">Despre</a></li>
+                <li><a href="">Contact</a></li> -->
+            </ul>
+        </nav>
+       
+            <div id="search-bar"> 
+                <input type="text" placeholder="Search..">
+                <img src="./assets/Search_Icon.svg" alt="">
+            </div>
             <router-link to="/Login" id="LogIn_link">LogIn</router-link>
-            
+        </template>
     </header>
     
   <router-view/>
 </template>
 
 <script>
-    
+import {mapState} from 'vuex'
+
+export default {
+    data() {
+        return {
+            isElev: false,
+            isProfesor: false,
+        }
+    },
+    methods: {
+        logout() {
+
+        }
+    },
+    computed: {
+        ...mapState(['userProfile'])
+        
+    },
+    updated() {
+        console.log(this.userProfile)
+        if(this.userProfile.userType == "elev") {
+            this.isElev = true;
+        }
+        if(this.userProfile.userType == "profesor") {
+            this.isProfesor = true;
+        }
+    }
+}
+
 </script>
 
 <style lang="scss">

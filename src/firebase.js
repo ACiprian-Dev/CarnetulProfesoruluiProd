@@ -27,12 +27,14 @@ const auth = firebase.auth();
 const eleviCollection = db.collection('elevi')
 const profesoriCollection = db.collection('profesori')
 const reviewsCollection = db.collection('reviews')
+const usersCollection = db.collection('users')
 
 export {
     db as db,
     auth as auth,
     eleviCollection as eleviCollection,
     profesoriCollection as profesoriCollection,
-    reviewsCollection as reviewsCollection
+    reviewsCollection as reviewsCollection,
+    usersCollection as usersCollection
 }
 

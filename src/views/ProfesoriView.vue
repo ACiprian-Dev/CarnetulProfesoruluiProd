@@ -16,7 +16,8 @@
     </div>
     <div>
       <h2>Detalii</h2>
-      <h3>{{userProfile.clasa}}</h3>
+      <h3>{{userProfile.numePrenume}}</h3>
+      <h3>{{userProfile.userType}}</h3>
     </div>
   </div>
 </template>
